@@ -1,8 +1,8 @@
-# ⛓ Blockchain Simulator Demo — Complete Windows Setup Guide
+# ⛓ Blockchain Simulation Demo — Complete Windows Setup Guide
 
 ## What This App Does
 
-This is a visual blockchain simulator that teaches how blockchain technology works:
+This is a visual blockchain simulation that teaches how blockchain technology works:
 
 - Each **block** has an ID, Nonce, Data, and Hash
 - The **Hash** is a SHA-256 fingerprint of `(id + nonce + data + prev_hash)`
@@ -34,7 +34,7 @@ During installation:
 
 After installation, open **pgAdmin** (installed alongside PostgreSQL) and create a new database:
 1. Right-click "Databases" → Create → Database
-2. Name it: `blockchain_simulator`
+2. Name it: `blockchain_simulation`
 3. Click Save
 
 ### 3. Install Git (optional, for cloning)
@@ -45,7 +45,7 @@ Download from https://git-scm.com
 ## Project Structure
 
 ```
-blockchain-demo/
+blockchain-simulation/
 ├── backend/                   ← Express + TypeScript API
 │   ├── src/
 │   │   ├── server.ts          ← Entry point — starts the server
@@ -95,7 +95,7 @@ Open `backend/src/utils/db.ts` and check the connection settings:
 export const pool = new Pool({
   host:     process.env.PG_HOST     || 'localhost',
   port:     Number(process.env.PG_PORT) || 5432,
-  database: process.env.PG_DATABASE || 'blockchain_demo',
+  database: process.env.PG_DATABASE || 'blockchain_simulation',
   user:     process.env.PG_USER     || 'postgres',
   password: process.env.PG_PASSWORD || 'postgres',  // ← change if your password differs
 });
@@ -107,7 +107,7 @@ Either edit the defaults directly, or create a `.env` file inside `backend/`:
 # backend/.env
 PG_HOST=localhost
 PG_PORT=5432
-PG_DATABASE=blockchain_simulator
+PG_DATABASE=blockchain_simulation
 PG_USER=postgres
 PG_PASSWORD=your_actual_password
 ```
@@ -119,7 +119,7 @@ PG_PASSWORD=your_actual_password
 Open **Command Prompt** or **PowerShell**, then:
 
 ```cmd
-cd path\to\blockchain_simulator\backend
+cd path\to\blockchain_simulation\backend
 npm install
 ```
 
@@ -156,7 +156,7 @@ Test it: open http://localhost:3000/health in your browser — you should see `{
 Open a **second** Command Prompt window:
 
 ```cmd
-cd path\to\blockchain-demo\frontend
+cd path\to\blockchain-simulation\frontend
 npm install
 ```
 
@@ -244,7 +244,7 @@ tamper-evident: changing one block forces you to redo ALL the work for every blo
 **"connection refused" or "ECONNREFUSED"**
 → PostgreSQL is not running. Open Windows Services and start "postgresql-x64-16"
 
-**"database blockchain_demo does not exist"**
+**"database blockchain_simulation does not exist"**
 → Create it in pgAdmin (see Prerequisites step 2)
 
 **"password authentication failed"**
