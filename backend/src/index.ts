@@ -1,6 +1,7 @@
 import express, {Request, Response} from 'express';
 import cors from 'cors';
 import { initDatabase } from './config/db';
+import { errorHandler } from './middleware/errorHandler';
 import { config } from 'dotenv'
 config();
 
@@ -15,6 +16,9 @@ app.use(express.urlencoded({ extended: true }))
 app.get('/health', (_req, res ) => {
     res.json({ status: 'ok' });
 });
+
+// Any route that calls next(err) will land here.
+app.use(errorHandler)
 
 app.listen(port, async () => {
     await initDatabase();
