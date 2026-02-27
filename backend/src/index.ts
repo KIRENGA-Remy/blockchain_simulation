@@ -1,5 +1,6 @@
 import express, {Request, Response} from 'express';
 import cors from 'cors';
+import { initDatabase } from './config/db';
 import { config } from 'dotenv'
 config();
 
@@ -11,10 +12,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello, Blockchain Simulation!');
+app.get('/health', (_req, res ) => {
+    res.json({ status: 'ok' });
 });
 
-app.listen(port, () => {
+app.listen(port, async () => {
+    await initDatabase();
     console.log(`Server is running on port ${process.env.PORT || 5000}`);
 });
