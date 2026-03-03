@@ -7,13 +7,13 @@ export interface UseBlockchainReturn {
     loading: boolean;
     error: string | null;
     busyIds: Set<number>;
-    handleEdit: (id: number, none: number, data: string) => Promise<void>;
-    handleAdd: () => Promise<void>
-    handleMine: (id: number) => Promise<void>
+    handleEdit: (id: number, nonce: number, data: string) => Promise<void>;
+    handleAdd: () => Promise<void>;
+    handleMine: (id: number) => Promise<void>;
 }
 
 // Component is mounted means is rendered and displayed on UI
-export function UseBlockchain(): UseBlockchainReturn {
+export function useBlockchain(): UseBlockchainReturn {
 
     const [blocks, setBlocks] = useState<Block[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -39,7 +39,7 @@ export function UseBlockchain(): UseBlockchainReturn {
                 setLoading(false);
             }
            }
-        })
+        })()   // to call the function immediately
         return () => { cancelled = true}   // This line will run when the component is not still being displaye on UI, This prevents memory leaks.
     }, [])    // Meaning of this dependency array, Run only once after first render
 

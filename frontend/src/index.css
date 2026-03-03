@@ -1,1 +1,58 @@
 @import "tailwindcss";
+
+:root {
+
+      /* Background */
+  --bg:              #0d1117;   /* near-black, GitHub dark style */
+  --bg-panel:        #161b22; 
+  --bg-surface:      #1c2128;  
+
+      /* Card states */
+  --card-valid:      #e0f2fe;   
+  --card-invalid:    #fee2e2;   
+  --border-valid:    #7dd3fc;  
+  --border-invalid:  #fca5a5;   
+
+    /* Hash display */
+  --hash-valid:      #16a34a;   
+  --hash-invalid:    #b45309;  
+  
+    /* Chain link arrows */
+  --link-valid:      #3b82f6;  
+  --link-invalid:    #ef4444;  
+
+  /* Text */
+  --text-dark:       #1e293b;  
+  --text-muted:      #64748b;  
+  --text-hash:       #334155;   
+
+  /* Accent */
+  --accent:          #0ea5e9;   
+  --accent-hover:    #0284c7;
+
+  /* Danger */
+  --danger:          #ef4444;
+  --danger-hover:    #dc2626;
+
+  /* Fonts */
+  --font-ui:         'Syne', sans-serif;     
+  --font-mono:       'Space Mono', monospace; 
+
+  /* Spacing */
+  --radius:          12px;
+  --radius-sm:       8px;
+  --shadow-card:     0 4px 20px rgba(0,0,0,0.12);
+  --shadow-card-invalid: 0 4px 24px rgba(239,68,68,0.18);
+}
+
+/* ── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-ui);
+  background: var(--bg);
+  color: #e2e8f0;              /* light text on dark background */
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+

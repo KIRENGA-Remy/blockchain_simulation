@@ -8,11 +8,18 @@ async function request<T>(
     path: string,
     options?: RequestInit    // standard fetch options (method, body, etc.)
 ): Promise<T> {
+    try {
     const response = await fetch(`${BASE_URL}${path}`, {
         headers: {
             'Content-Type': 'application/json'}, // we always send JSON, even if body is empty (e.g. for GET requests)
         ...options  
     });
+    console.log("Response status ", response.status);
+    
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`HTTP error ${response.status}: ${errorText || response.statusText}`);
+    }
 
     const json: ApiResponse<T> = await response.json();
 
@@ -21,6 +28,14 @@ async function request<T>(
     }
 
     return json.data as T;
+
+    } catch (error) {
+        // Re-throw with a more helpful message
+        if (error instanceof Error) {
+            throw new Error(`API request failed: ${error.message}`);
+        }
+        throw new Error('API request failed with unknown error');
+    }
 }
 
 // Fetch all blocks from the backend ordered by id 
