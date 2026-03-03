@@ -13,8 +13,8 @@ export interface Block {
 // Shape sent from the frontend when a field is edited.
 // Only nonce and data are editable by the user.
 export interface UpdateBlockRequest {
-    nonce: number;
-    data: string;
+    nonce?: number;
+    data?: string;
 }
 
 // A shape sent after a successfull mine operation

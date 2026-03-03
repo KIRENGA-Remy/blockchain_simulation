@@ -4,7 +4,7 @@
 
 export async function computeHashClient( id: number,nonce: number, data: string, prevHash: string): Promise<string> {
 // Build the same canonical string as the backend: "id|nonce|data|prev_hash"
-  const input = `${id}${nonce}${data}${prevHash}`;
+  const input = `${id}|${nonce}|${data}|${prevHash}`;
 
   // Encode the input string as UTF-8 bytes, which is what the Web Crypto API expects.
   const msgBuffer = new TextEncoder().encode(input);

@@ -1,0 +1,9 @@
+.chain-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;                    /* ChainLink components provide the visual spacing */
+  overflow-x: auto;          /* horizontal scroll when many blocks */
+  padding: 16px 8px 24px;
+  scrollbar-width: thin;
+  scrollbar-color: #334155 transparent;
+}
