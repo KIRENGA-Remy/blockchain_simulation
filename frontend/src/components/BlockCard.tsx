@@ -62,11 +62,11 @@ export const BlockCard: React.FC<BlockCardProps> = ({block, isBusy, isFirst, onE
     };
 
     return (
-        <div className="min-w-75 max-w-75 border border-solid rounded-xl p-5 shadow-[var(--0 4px 20px rgba(0,0,0,0.12);)] shrink-0" style={{ background: cardBg, borderColor: cardBorder}}>
-            <div className="flex items-center gap-1.5 mb-4 pb-3 border-b border-black/10">
+        <div className="w-85 h-80 border border-solid rounded-xl p-5 shadow-[0_4px_20px_rgba(0,0,0,0.12)] shrink-0 flex flex-col" style={{ background: cardBg, borderColor: cardBorder}}>
+            <div className="flex items-center gap-1.5 pb-3 border-b border-black/10 shrink-0">
                 <span className="text-xs font-bold uppercase tracking-[1.5px] text-slate-500">Block</span>
                 <span className="font-mono text-lg font-bold text-slate-800 flex-1">#{block.id}</span>
-                <span className={`text-[0.65rem] font-bold py-1.5 px-2 rounded-full tracking-[0.3px] font-mono
+                <span className={`text-[0.65rem] font-bold py-1.5 px-2 rounded-full tracking-[0.3px] font-mono whitespace-nowrap
                     ${isLocallyValid ? 'bg-green-500/15 text-green-600 border border-green-500/30' : 'bg-red-600/12 text-red-600 border border-red-600/25'}`}> 
                     { isLocallyValid ? '✓ Mined' : '✗ Invalid' }
                 </span>
@@ -120,8 +120,13 @@ export const BlockCard: React.FC<BlockCardProps> = ({block, isBusy, isFirst, onE
                 </div>
             </div>
 
-            <div className="flex items-center gap-3 mt-4 p-3.5 border-t border-solid border-t-black/8">
-                <button>
+            <div className="flex items-center justify-center gap-3 p-3.5 border-t border-solid border-t-black/8">
+                <button
+                className={`flex items-center gap-1.75 py-2 px-4.5 bg-[#0ea5e9] text-white border-none rounded-lg text-xs font-bold cursor-pointer tracking-[0.3px] transition-all ${isBusy ? 'bg-[#7c3aed] animate-pulse' : ''} `}
+                onClick={() => onMine(block.id)}
+                disabled={ isBusy || isLocallyValid}  // can't mine if already valid, or busy
+                title={isLocallyValid ? 'Block is already mined' : 'Run proof-of-work mining'}
+                >
                     { isBusy ? (
                         <>
                         <span className="inline-block w-3 h-3 border-2 border-solid border-white/40 border-t-white rounded-full animate-spin"/>
